@@ -10,14 +10,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-def harvest_predictor(raster, date):
+def harvest_predictor(raster, planted_date_as_str):
+    planted_date = datetime.datetime.strptime(planted_date_as_str, "%Y-%m-%d").date()
     # Model
-    df = pd.read_csv("ndvi-curve.csv")
+    df = pd.read_csv("data/ndvi-curve.csv")
 
     day = df['day']
     ndvi = df['ndvi']
     model = np.poly1d(np.polyfit(day, ndvi, 4))
-    target = np.polyval(model, date)
+    days_since_planted = (datetime.date.today() - planted_date).days
+    target = np.polyval(model, days_since_planted)
 
     # Reading the NDVI from Leaf's
     leaf_raster = rasterio.open(raster)
