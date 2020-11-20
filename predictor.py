@@ -42,8 +42,3 @@ def harvest_predictor(raster, date):
         harvest_date = f"You are {(247) - (pred - target)} days to start the harvest operation"
 
     return harvest_date
-
-
-if __name__ == "__main__":
-
-        print(harvest_predictor('C:/Users/Gustavo/Downloads/NDVI-2020-01-13', 120))
