@@ -47,4 +47,4 @@ def harvest_predictor(raster_url, planted_date_as_str):
     else:
         harvest_date = f"You are {(247) - (pred - target)} days to start the harvest operation"
 
-    return harvest_date
+    return round(harvest_date)
